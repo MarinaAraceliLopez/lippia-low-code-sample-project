@@ -1,0 +1,5 @@
+{
+  "name": "",
+  "clientId": null,
+  "workspaceId": "${env.workspace_id}"
+}

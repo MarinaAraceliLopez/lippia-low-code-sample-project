@@ -1,0 +1,15 @@
+{
+  "name": "ProyectoCompleto_$(random)",
+  "color": "#03A9F4",
+  "clientId": "66e3394679d6557346ed8b8c",
+  "isPublic": false,
+  "billable": true,
+  "note": "Este es un proyecto con todos los campos opcionales incluidos",
+  "workspaceId": "66dcc0fcd2ef02363c07c5d4",
+  "templateId": "64a7e8c3d9f0b4256b3f5678",
+  "estimate": {
+    "estimate": 3600000,
+    "type": "AUTO"
+  },
+  "archived": false
+}
