@@ -1,0 +1,9 @@
+{
+  "timeEntryId": "{{timeEntryId}}",
+  "description": "Reunión de planificación",
+  "start": "2025-06-18T09:00:00Z",
+  "end": "2025-06-18T10:00:00Z",
+  "billable": true,
+  "workspaceId": "66dcc0fcd2ef02363c07c5d4",
+  "projectId": "672290ae1ab08f4a40658078"
+}
