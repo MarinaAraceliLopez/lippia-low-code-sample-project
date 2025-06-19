@@ -8,24 +8,36 @@ Feature: Pruebas para /workspaces en Clockify
     And header X-Api-Key = "$(env.api_key)"
 
   @getAllWorkspaces
-  Scenario: Obtener exitosamente todos los workspaces
+  Scenario: Obtener todos los workspaces
     Given endpoint /workspaces
     When execute method GET
     Then the status code should be 200
-    * define workspace_id = $[0].id
+    * define env.workspace_id = $[0].id
+
+
+  @getUsersId
+  Scenario: Obtener todos los usuarios de un workspace
+    Given endpoint /workspaces/$(env.workspace_id)/users
+    When execute method GET
+    Then the status code should be 200
+    * print response
+    * define UsersId = $[0].id
+
 
   @getWorkspaceFromWithCall
-  Scenario: Obtener exitosamente información del workspace con llamada
-    Given call Workspaces.feature@getAllWorkspaces
+  Scenario: Obtener información del workspace con llamada
     And endpoint /workspaces/$(env.workspace_id)
     When execute method GET
     Then the status code should be 200
     * print response
 
   @getClientsFromWorkspace
-  Scenario: Obtener exitosamente todos los clientes de un workspace
-    Given call Workspaces.feature@getAllWorkspaces
+  Scenario: Obtener todos los clientes de un workspace
     And endpoint /workspaces/$(env.workspace_id)/clients
     When execute method GET
     Then the status code should be 200
     * print response
+
+
+
+

@@ -1,6 +1,4 @@
 @clockify @TimeEntries
-
-
 Feature: CRUD de registros de hora en Clockify
 
   Background:
@@ -8,8 +6,6 @@ Feature: CRUD de registros de hora en Clockify
     And header Content-Type = "application/json"
     And header Accept = "application/json"
     And header X-Api-Key = "$(env.api_key)"
-    #* define workSpaceId = "$(workSpaceId)"
-
 
   @getUserId
   Scenario: Obtener el ID del usuario actual
@@ -34,8 +30,6 @@ Feature: CRUD de registros de hora en Clockify
     Then the status code should be 200
     * print response
     * define env.workspace_id = $[0].id
-    #* define userEntriesUrl = '/workspaces/' + $(env.workspace_id) + '/user/' + $(env.user_id) + '/time-entries'
-    #Given endpoint $(userEntriesUrl)
 
   @AddNewTimeEntry
   Scenario: Agregar una nueva entrada de tiempo

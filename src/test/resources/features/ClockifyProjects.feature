@@ -8,24 +8,23 @@ Feature: Pruebas para /projects en Clockify
     And header X-Api-Key = "$(env.api_key)"
 
   @getProjectsFromWorkspace
-  Scenario: Obtener exitosamente todos los proyectos de un workspace
-    Given call Workspaces.feature@getAllWorkspaces
+  Scenario: Obtener todos los proyectos de un workspace
     And endpoint /workspaces/$(env.workspace_id)/projects
     When execute method GET
     Then the status code should be 200
     * print response
 
   @GetProjectById
-  Scenario: Consultar exitosamente un proyecto por su identificador
+  Scenario: Consultar un proyecto por su identificador
     Given call Projects.feature@getProjectsFromWorkspace
-    * define projectId = $[0].id
-    And endpoint /workspaces/$(env.workspace_id)/projects/$(projectId)
+    And endpoint /workspaces/$(env.workspace_id)/projects/{{projectId}}
     When execute method GET
     Then the status code should be 200
+    * define projectId = $[0].id
     * print response
 
   @CreateProject
-  Scenario: Crear exitosamente un proyecto
+  Scenario: Crear un proyecto
     Given call Workspaces.feature@getAllWorkspaces
     And endpoint /workspaces/$(env.workspace_id)/projects
     And body jsons/bodies/createProject.json
@@ -37,7 +36,7 @@ Feature: Pruebas para /projects en Clockify
     * print response
 
   @AddProjectWithOptional
-  Scenario: Crear exitosamente un proyecto con campos opcionales adicionales
+  Scenario: Crear un proyecto con campos opcionales adicionales
     Given call Workspaces.feature@getAllWorkspaces
     * define random = java.util.UUID.randomUUID().toString().substring(0, 8)
     And endpoint /workspaces/$(env.workspace_id)/projects
@@ -48,7 +47,7 @@ Feature: Pruebas para /projects en Clockify
     * print response
 
   @GetProjectsFiltered
-  Scenario: Obtener exitosamente el proyecto filtrado por un nombre
+  Scenario: Obtener el proyecto filtrado por un nombre
     Given call Workspaces.feature@getAllWorkspaces
     And endpoint /workspaces/$(env.workspace_id)/projects?name=Aguas
     When execute method GET
@@ -56,7 +55,7 @@ Feature: Pruebas para /projects en Clockify
     * print response
 
   @CheckProjectExists
-  Scenario: Verificar exitosamente que el proyecto existe y el id es correcto
+  Scenario: Verificar que el proyecto existe y el id es correcto
     Given call Projects.feature@CreateProject
     And endpoint /workspaces/$(env.workspace_id)/projects/$(env.project_id)
     When execute method GET
@@ -65,7 +64,7 @@ Feature: Pruebas para /projects en Clockify
     * print response
 
   @EditProject
-  Scenario: Editar exitosamente un proyecto
+  Scenario: Editar un proyecto
     Given call Projects.feature@CreateProject
     And endpoint /workspaces/$(env.workspace_id)/projects/$(env.project_id)
     And body jsons/bodies/editProject.json
@@ -75,7 +74,7 @@ Feature: Pruebas para /projects en Clockify
     * print response
 
   @ArchiveOnly
-  Scenario: Archivar exitosamente un proyecto
+  Scenario: Archivar un proyecto
     Given call Projects.feature@CreateProject
     And endpoint /workspaces/$(env.workspace_id)/projects/$(env.project_id)
     And body jsons/bodies/archiveProject.json
@@ -83,7 +82,7 @@ Feature: Pruebas para /projects en Clockify
     Then the status code should be 200
 
   @DeleteOnly
-  Scenario: Eliminar exitosamente un proyecto
+  Scenario: Eliminar un proyecto
     Given call Projects.feature@CreateProject
     And call Projects.feature@ArchiveOnly
     And endpoint /workspaces/$(env.workspace_id)/projects/$(env.project_id)
@@ -92,7 +91,7 @@ Feature: Pruebas para /projects en Clockify
     * print response
 
   @VerifyDeletion
-  Scenario: Validar exitosamente que el proyecto eliminado no existe
+  Scenario: Validar que el proyecto eliminado no existe
     Given call Projects.feature@CreateProject
     And call Projects.feature@ArchiveOnly
     And call Projects.feature@DeleteOnly
@@ -100,4 +99,6 @@ Feature: Pruebas para /projects en Clockify
     When execute method GET
     Then the status code should be 404
     * print response
+
+
 
