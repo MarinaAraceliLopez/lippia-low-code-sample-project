@@ -1,0 +1,12 @@
+{
+
+"Content-Type": "application/json",
+"X-Api-Key": "<your_api_key>",
+"id": "60dbf5164ef0602c8efcf8f3",
+"description": "Meeting",
+"start": "2023-06-14T08:00:00Z",
+"end": "2023-06-14T09:00:00Z",
+"projectId": "60dbf5164ef0602c8efcf8e1"
+
+
+}

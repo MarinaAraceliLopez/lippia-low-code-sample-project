@@ -1,0 +1,15 @@
+[
+    {
+        "id": "{{timeEntryId}}",
+        "start": "{{start}}",
+        "end": "{{end}}",
+        "description": "{{description}}",
+        "projectId": "{{projectId}}",
+        "tagIds": [],
+        "taskId": null,
+        "billable": "{{billable}}",
+         "type": "REGULAR"
+    }
+]
+
+
